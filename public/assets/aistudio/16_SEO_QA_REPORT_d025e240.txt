@@ -1,0 +1,20 @@
+﻿NASHARHUB / SEO QA - BASELINE ORIGINAL CONTENT
+Source of keyword frequency target: SEO Template _nasharhub.xlsx | Blog Research D2.
+Counts below apply to Google Docs article text only; no metadata or TOC duplication.
+Original text intentionally unchanged.
+
+NH-01 | شركة تسويق منتجات غذائية | Primary keyword: شركة تسويق منتجات غذائية | Current: 16 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 16
+NH-02 | شركات تصميم متجر الكتروني | Primary keyword: شركات تصميم متجر الكتروني | Current: 18 | Target: 6-9 | REVIEW | Excel FAQs explicit: 2 | Original FAQs: 3 | Internal links: 9
+NH-03 | شركة تصميم مواقع وتطبيقات | Primary keyword: شركة تصميم مواقع وتطبيقات | Current: 14 | Target: 6-9 | REVIEW | Excel FAQs explicit: 2 | Original FAQs: 3 | Internal links: 8
+NH-04 | شركة تصميم مواقع في جدة | Primary keyword: شركة تصميم مواقع في جدة | Current: 15 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 9
+NH-05 | شركات تسويق الكتروني في الامارات | Primary keyword: شركات تسويق الكتروني في الامارات | Current: 15 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 10
+NH-06 | شركات تسويق في قطر | Primary keyword: شركات تسويق في قطر | Current: 15 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 14
+NH-07 | خدمات تحسين محركات البحث | Primary keyword: خدمات تحسين محركات البحث | Current: 15 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 9
+NH-08 | شركات التسويق الرقمي | Primary keyword: شركات التسويق الرقمي | Current: 14 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 17
+NH-09 | شركات متخصصة في التسويق الالكتروني | Primary keyword: شركات متخصصة في التسويق الالكتروني | Current: 16 | Target: 6-9 | REVIEW | Excel FAQs explicit: 2 | Original FAQs: 4 | Internal links: 19
+NH-10 | شركة استشارات تسويقية | Primary keyword: شركة استشارات تسويقية | Current: 15 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 17
+NH-11 | شركه تسويق اعلانات | Primary keyword: شركه تسويق اعلانات | Current: 13 | Target: 6-9 | REVIEW | Excel FAQs explicit: 1 | Original FAQs: 3 | Internal links: 16
+NH-12 | مؤسسة تسويق الكتروني | Primary keyword: مؤسسة تسويق الكتروني | Current: 16 | Target: 6-9 | REVIEW | Excel FAQs explicit: 1 | Original FAQs: 3 | Internal links: 14
+NH-13 | مكتب تسويق الكتروني | Primary keyword: مكتب تسويق الكتروني | Current: 14 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 15
+NH-14 | خدمة تصميم المواقع الالكترونية | Primary keyword: خدمة تصميم المواقع الالكترونية | Current: 14 | Target: 6-9 | REVIEW | Excel FAQs explicit: 2 | Original FAQs: 4 | Internal links: 8
+NH-15 | شركات تصميم مواقع انترنت | Primary keyword: شركات تصميم مواقع انترنت | Current: 15 | Target: 6-9 | REVIEW | Excel FAQs explicit: 0 | Original FAQs: 3 | Internal links: 9
