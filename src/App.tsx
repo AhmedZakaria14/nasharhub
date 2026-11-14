@@ -22,6 +22,7 @@ const WebsiteOnboarding = lazy(() => import('@/components/WebsiteOnboarding').th
 import { Blog } from '@/components/Blog';
 import { BlogPost } from '@/components/BlogPost';
 const WorkPolicy = lazy(() => import('@/components/WorkPolicy').then(m => ({ default: m.WorkPolicy })));
+const PaymentAndDocs = lazy(() => import('@/components/PaymentAndDocs').then(m => ({ default: m.PaymentAndDocs })));
 const PlatformDetail = lazy(() => import('@/components/PlatformDetail').then(m => ({ default: m.PlatformDetail })));
 const CityLandingPage = lazy(() => import('@/components/CityLandingPage').then(m => ({ default: m.CityLandingPage })));
 const NotFound = lazy(() => import('@/components/NotFound').then(m => ({ default: m.NotFound })));
@@ -143,6 +144,9 @@ function App() {
     } else if (path === '/policy') {
       seoConfig.title = lang === 'en' ? 'Work Policy & Transparency | Nashar Hub' : 'سياسة العمل والشفافية | نشار هب';
       seoConfig.description = lang === 'en' ? 'Learn about work ethics, delivery standards, and transparency at Nashar Hub.' : 'تعرف على سياسة العمل ومعايير الجودة والشفافية المعتمدة في وكالة نشار هب للتسويق الرقمي.';
+    } else if (path === '/payment' || path === '/payments' || path === '/official-documents') {
+      seoConfig.title = lang === 'en' ? 'Official Payment Details & Legal Documents | Nashar Hub' : 'بيانات الدفع ومستندات الشركة الرسمية | نشار هب';
+      seoConfig.description = lang === 'en' ? 'Official payment methods (Banque Misr, InstaPay, Mobile Wallet) and verified company tax & legal registration documents for Nashar Hub.' : 'طرق الدفع المعتمدة لشركة نشار هب (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) ومستندات الشركة الرسمية (البطاقة الضريبية وشهادة الموقف الضريبي).';
     }
 
     updateSEO(seoConfig);
@@ -270,6 +274,9 @@ function App() {
           <Route path="/blog" element={<Blog lang={lang} onBack={handleBackToMain} />} />
           <Route path="/blog/:slug" element={<BlogPost lang={lang} onBack={handleBackToMain} />} />
           <Route path="/policy" element={<WorkPolicy lang={lang} onBack={handleBackToMain} />} />
+          <Route path="/payment" element={<PaymentAndDocs lang={lang} onBack={handleBackToMain} />} />
+          <Route path="/payments" element={<Navigate to="/payment" replace />} />
+          <Route path="/official-documents" element={<Navigate to="/payment" replace />} />
 
           <Route path="/services/:id" element={<PlatformDetailWrapper lang={lang} onBack={handleBackToMain} onWebsiteClick={handleWebsiteOnboardingClick} />} />
           

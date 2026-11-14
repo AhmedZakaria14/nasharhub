@@ -72,6 +72,7 @@ export const Footer: React.FC<FooterProps> = ({ lang, onSEOClick }) => {
                 <li><a href="#process" className="text-white/65 hover:text-white transition-all text-sm block">{lang === 'en' ? 'Our Process' : 'كيف نعمل'}</a></li>
                 <li><a href="/blog" className="text-white/65 hover:text-white transition-all text-sm block">{lang === 'en' ? 'Blog' : 'المدونة'}</a></li>
                 <li><a href="/policy" className="text-white/65 hover:text-white transition-all text-sm block">{lang === 'en' ? 'Work Policy & Transparency' : 'سياسة العمل والشفافية'}</a></li>
+                <li><a href="/payment" className="text-[#38bdf8] hover:text-white font-bold transition-all text-sm block">{lang === 'en' ? 'Payment Details & Legal Docs' : 'بيانات الدفع والمستندات الرسمية'}</a></li>
                 <li><a href="/ai" className="text-white/65 hover:text-white transition-all text-sm block">{lang === 'en' ? 'AI context' : 'معلومات الـ AI'}</a></li>
                 <li><a href="#contact" className="text-white/65 hover:text-white transition-all text-sm block">{lang === 'en' ? 'Start a Project' : 'ابدأ مشروعك'}</a></li>
              </ul>

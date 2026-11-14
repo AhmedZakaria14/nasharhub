@@ -181,6 +181,32 @@ export const WorkPolicy: React.FC<WorkPolicyProps> = ({ lang, onBack }) => {
             </ul>
           </section>
         </div>
+
+        {/* Official Payment & Legal Documents Banner */}
+        <section className="bg-[#0b1020] text-white rounded-xl border border-white/10 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-md">
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-[#1677d2]/20 text-[#38bdf8] rounded-xl border border-[#38bdf8]/30 shrink-0">
+              <CreditCard size={26} />
+            </div>
+            <div>
+              <h2 className="text-xl md:text-2xl font-extrabold text-white mb-1.5">
+                {lang === 'en' ? 'Official Payment Channels & Legal Documents' : 'بيانات الدفع المعتمدة ومستندات الشركة الرسمية'}
+              </h2>
+              <p className="text-sm text-white/75 leading-relaxed max-w-2xl">
+                {lang === 'en'
+                  ? 'View our verified payment channels (Banque Misr, InstaPay, Mobile Wallet) and inspect our official Egyptian Tax Card and Tax Status Certificate.'
+                  : 'اطلع على قنوات الدفع المعتمدة (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) وعاين البطاقة الضريبية وشهادة الموقف الضريبي الرسمية للوكالة.'}
+              </p>
+            </div>
+          </div>
+          <a
+            href="/payment"
+            className="inline-flex items-center justify-center gap-2 bg-[#1677d2] hover:bg-[#1262b0] text-white font-bold text-sm px-6 py-3.5 rounded-xl transition-all shrink-0 shadow-lg w-full md:w-auto"
+          >
+            <span>{lang === 'en' ? 'View Payment & Legal Docs' : 'صفحة الدفع والمستندات الرسمية'}</span>
+            {isRTL ? <ArrowRight size={16} className="rotate-180" /> : <ChevronRight size={16} />}
+          </a>
+        </section>
       </div>
     </div>
   );
