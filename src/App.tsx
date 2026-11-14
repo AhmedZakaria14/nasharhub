@@ -170,32 +170,20 @@ function App() {
   // Handle smooth scrolling for anchor links with offset for sticky header
   useEffect(() => {
     const handleAnchorClick = (e: MouseEvent) => {
+      if (e.defaultPrevented) return;
       const target = e.target as HTMLElement;
       const anchor = target.closest('a');
       
       if (anchor && anchor.hash && anchor.hash.startsWith('#') && anchor.origin === window.location.origin) {
-        // If we are not on the home page, navigate to home first
-        if (location.pathname !== '/') {
-          e.preventDefault();
-          navigate('/');
-          // We need a small timeout to let the main view render before scrolling
-          setTimeout(() => {
-            const id = anchor.hash.substring(1);
-            const element = document.getElementById(id);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
-          }, 100);
-          return;
-        }
-
-        e.preventDefault();
         const id = anchor.hash.substring(1);
-        const element = document.getElementById(id);
-        
-        if (element) {
+        const existingElement = document.getElementById(id);
+        const rawHref = anchor.getAttribute('href') || '';
+
+        // If the target section exists on the current page (and isn't explicitly a '/#...' home link from another page), scroll to it directly
+        if (existingElement && (!rawHref.startsWith('/#') || location.pathname === '/')) {
+          e.preventDefault();
           const navHeight = 100; // Offset for sticky navbar
-          const elementPosition = element.getBoundingClientRect().top;
+          const elementPosition = existingElement.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.scrollY - navHeight;
 
           window.scrollTo({
@@ -203,7 +191,22 @@ function App() {
             behavior: "smooth"
           });
           
-          window.history.pushState(null, '', anchor.hash);
+          window.history.pushState(null, '', `${location.pathname}${anchor.hash}`);
+          return;
+        }
+
+        // Otherwise, if we are not on the home page, navigate to home first
+        if (location.pathname !== '/') {
+          e.preventDefault();
+          navigate('/');
+          // We need a small timeout to let the main view render before scrolling
+          setTimeout(() => {
+            const element = document.getElementById(id);
+            if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+            }
+          }, 100);
+          return;
         }
       }
     };

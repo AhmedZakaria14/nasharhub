@@ -28,6 +28,16 @@ export const SnapchatWebDev: React.FC<SnapchatWebDevProps> = ({ lang }) => {
   const WHATSAPP_LINK = "https://wa.me/201010742430";
   const PHONE_LINK = "tel:+201010742430";
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [showFloating, setShowFloating] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowFloating(window.scrollY > 100);
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -124,45 +134,74 @@ export const SnapchatWebDev: React.FC<SnapchatWebDevProps> = ({ lang }) => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      {/* Floating Call & WhatsApp Actions */}
+      {/* Spherical Floating Call & WhatsApp Buttons (Appear on Scroll) */}
       <div 
-        className={`fixed bottom-24 md:bottom-7 ${isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'} z-50 flex flex-col gap-3`}
+        className={`fixed bottom-24 md:bottom-8 ${isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'} z-50 flex flex-col items-center gap-3.5 transition-all duration-500 ease-out ${
+          showFloating 
+            ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto' 
+            : 'opacity-0 translate-y-8 scale-75 pointer-events-none'
+        }`}
         aria-label={lang === 'ar' ? 'أزرار التواصل السريع' : 'Quick Contact Actions'}
       >
-        {/* Floating Direct Call Button */}
+        {/* Spherical Direct Call Button */}
         <a 
           href={PHONE_LINK}
           aria-label={lang === 'ar' ? 'اتصال مباشر 01010742430' : 'Call Direct 01010742430'}
-          className="group flex items-center gap-3 bg-[#121829]/95 hover:bg-[#1677d2] text-[#f4f1e9] hover:text-white backdrop-blur-xl border border-[#9e7444]/40 hover:border-[#1677d2] py-2.5 px-4 sm:py-3 sm:px-5 rounded-full font-bold text-xs sm:text-sm shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-95"
+          className="group relative w-14 h-14 sm:w-[58px] sm:h-[58px] rounded-full bg-gradient-to-br from-[#38bdf8] via-[#1677d2] to-[#0c4a6e] text-white flex items-center justify-center shadow-[0_10px_25px_rgba(22,119,210,0.45),inset_0_2px_4px_rgba(255,255,255,0.35)] border border-white/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-110 active:scale-95"
         >
-          <span className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#9e7444]/20 group-hover:bg-white/20 text-[#9e7444] group-hover:text-white transition-colors shrink-0">
-            <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+          {/* Specular 3D Sphere Gloss */}
+          <span className="absolute top-1 left-2 right-2 h-5 rounded-full bg-gradient-to-b from-white/30 to-transparent pointer-events-none" />
+          
+          {/* Authentic Phone Call Vector Logo */}
+          <svg 
+            viewBox="0 0 24 24" 
+            className="w-6 h-6 sm:w-7 sm:h-7 fill-current text-white drop-shadow-xs transition-transform duration-300 group-hover:rotate-12"
+            aria-hidden="true"
+          >
+            <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99zM14 3v2c2.76 0 5 2.24 5 5h2c0-3.87-3.13-7-7-7zm0 4v2c.55 0 1 .45 1 1h2c0-1.66-1.34-3-3-3z" />
+          </svg>
+
+          {/* Hover Tooltip */}
+          <span 
+            className={`hidden sm:flex items-center gap-1.5 absolute top-1/2 -translate-y-1/2 ${
+              isRTL ? 'left-full ml-3' : 'right-full mr-3'
+            } px-3 py-1.5 rounded-lg bg-[#0b1020]/95 text-white text-xs font-bold whitespace-nowrap border border-white/15 shadow-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none`}
+          >
+            <span>{lang === 'ar' ? 'اتصال مباشر' : 'Call Now'}</span>
+            <span className="font-mono text-[#38bdf8]" dir="ltr">01010742430</span>
           </span>
-          <div className="flex flex-col leading-tight text-right">
-            <span className="font-extrabold tracking-wide">{lang === 'ar' ? 'اتصال مباشر' : 'Call Us Now'}</span>
-            <span className="text-[10px] font-mono text-[#f4f1e9]/65 group-hover:text-white/90 tracking-wider" dir="ltr">01010742430</span>
-          </div>
         </a>
 
-        {/* Floating WhatsApp Button */}
+        {/* Spherical Official WhatsApp Button */}
         <a 
           href={WHATSAPP_LINK} 
           target="_blank" 
           rel="noopener noreferrer"
           aria-label={lang === 'ar' ? 'تواصل عبر واتساب' : 'Chat on WhatsApp'}
-          className="group flex items-center gap-3 bg-[#25D366] hover:bg-[#1DA851] text-white py-2.5 px-4 sm:py-3 sm:px-5 rounded-full font-bold text-xs sm:text-sm shadow-[0_12px_30px_rgba(37,211,102,0.35)] border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-95"
+          className="group relative w-14 h-14 sm:w-[58px] sm:h-[58px] rounded-full bg-gradient-to-br from-[#25D366] via-[#20bd5a] to-[#128C7E] text-white flex items-center justify-center shadow-[0_10px_28px_rgba(37,211,102,0.5),inset_0_2px_4px_rgba(255,255,255,0.4)] border border-white/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-110 active:scale-95"
         >
-          <span className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 text-white shrink-0">
-            <MessageCircle className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
-            <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
-            </span>
+          {/* Subtle Ambient Pulse Ring */}
+          <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 pointer-events-none" />
+          {/* Specular 3D Sphere Gloss */}
+          <span className="absolute top-1 left-2 right-2 h-5 rounded-full bg-gradient-to-b from-white/35 to-transparent pointer-events-none" />
+
+          {/* Authentic Official WhatsApp Brand SVG Logo */}
+          <svg 
+            viewBox="0 0 32 32" 
+            className="w-7 h-7 sm:w-8 sm:h-8 fill-current text-white drop-shadow-xs transition-transform duration-300 group-hover:scale-105"
+            aria-hidden="true"
+          >
+            <path d="M16.004 3.2c-7.068 0-12.8 5.732-12.8 12.8 0 2.257.59 4.46 1.71 6.404L3.09 28.8l6.557-1.72a12.742 12.742 0 0 0 6.357 1.693h.005c7.068 0 12.8-5.732 12.8-12.8 0-3.42-1.332-6.636-3.75-9.054A12.714 12.714 0 0 0 16.004 3.2zm0 23.413h-.004a10.6 10.6 0 0 1-5.404-1.48l-.388-.23-4.022 1.055 1.074-3.922-.252-.402a10.576 10.576 0 0 1-1.628-5.647c0-5.855 4.765-10.62 10.624-10.62 2.837 0 5.504 1.105 7.508 3.112a10.553 10.553 0 0 1 3.11 7.51c0 5.856-4.765 10.624-10.618 10.624zm5.828-7.957c-.32-.16-1.89-.933-2.183-1.04-.293-.106-.506-.16-.72.16-.213.32-.826 1.04-1.012 1.253-.187.213-.373.24-.693.08-.32-.16-1.35-.498-2.572-1.587-.95-.848-1.592-1.895-1.778-2.215-.187-.32-.02-.493.14-.653.144-.143.32-.373.48-.56.16-.187.213-.32.32-.533.107-.213.053-.4-.027-.56-.08-.16-.72-1.734-.986-2.374-.26-.624-.525-.54-.72-.55-.186-.008-.4-.01-.613-.01-.213 0-.56.08-.853.4-.293.32-1.12 1.094-1.12 2.668 0 1.573 1.146 3.094 1.306 3.307.16.213 2.256 3.445 5.465 4.83.764.33 1.36.527 1.824.674.766.244 1.464.21 2.016.127.615-.092 1.89-.773 2.157-1.52.266-.747.266-1.387.186-1.52-.08-.133-.293-.213-.613-.373z" />
+          </svg>
+
+          {/* Hover Tooltip */}
+          <span 
+            className={`hidden sm:flex items-center gap-1.5 absolute top-1/2 -translate-y-1/2 ${
+              isRTL ? 'left-full ml-3' : 'right-full mr-3'
+            } px-3 py-1.5 rounded-lg bg-[#0b1020]/95 text-white text-xs font-bold whitespace-nowrap border border-white/15 shadow-xl opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-200 pointer-events-none`}
+          >
+            <span>{lang === 'ar' ? 'واتساب مباشر' : 'WhatsApp'}</span>
           </span>
-          <div className="flex flex-col leading-tight text-right">
-            <span className="font-extrabold tracking-wide">{lang === 'ar' ? 'واتساب مباشر' : 'WhatsApp'}</span>
-            <span className="text-[10px] text-white/90 font-medium">{lang === 'ar' ? 'رد فوري واستشارة' : 'Instant Reply'}</span>
-          </div>
         </a>
       </div>
 

@@ -274,9 +274,15 @@ export const PaymentAndDocs: React.FC<PaymentAndDocsProps> = ({ lang, onBack }) 
                 href="#payment-methods-section"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('payment-methods-section')?.scrollIntoView({ behavior: 'smooth' });
+                  e.stopPropagation();
+                  const el = document.getElementById('payment-methods-section');
+                  if (el) {
+                    const top = el.getBoundingClientRect().top + window.scrollY - 96;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    window.history.replaceState(null, '', '/payment#payment-methods-section');
+                  }
                 }}
-                className="inline-flex items-center gap-2 bg-[#1677d2] hover:bg-[#1262b0] text-white px-5 py-3 rounded-xl font-bold text-sm transition-all shadow-lg"
+                className="inline-flex items-center gap-2 bg-[#1677d2] hover:bg-[#1262b0] text-white px-5 py-3 rounded-xl font-bold text-sm transition-all shadow-lg cursor-pointer"
               >
                 <Wallet size={17} />
                 <span>{lang === 'ar' ? 'طرق الدفع المتاحة' : 'Payment Methods'}</span>
@@ -285,9 +291,15 @@ export const PaymentAndDocs: React.FC<PaymentAndDocsProps> = ({ lang, onBack }) 
                 href="#official-docs-section"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById('official-docs-section')?.scrollIntoView({ behavior: 'smooth' });
+                  e.stopPropagation();
+                  const el = document.getElementById('official-docs-section');
+                  if (el) {
+                    const top = el.getBoundingClientRect().top + window.scrollY - 96;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                    window.history.replaceState(null, '', '/payment#official-docs-section');
+                  }
                 }}
-                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/15 px-5 py-3 rounded-xl font-bold text-sm transition-all"
+                className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/15 px-5 py-3 rounded-xl font-bold text-sm transition-all cursor-pointer"
               >
                 <FileCheck2 size={17} className="text-[#38bdf8]" />
                 <span>{lang === 'ar' ? 'مستندات الشركة الرسمية' : 'Official Documents'}</span>
