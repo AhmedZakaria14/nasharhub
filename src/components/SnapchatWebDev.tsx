@@ -3,7 +3,7 @@ import { Language } from '../types';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { Helmet } from 'react-helmet-async';
 import { updateSEO } from '../utils/seo';
-import { Smartphone, Zap, Palette, ArrowLeft, ArrowRight, ShieldCheck, Rocket, MousePointerClick, Gauge, Code2, Users, CheckCircle2, MessageCircle, BarChart3, Globe, Target, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Smartphone, Zap, Palette, ArrowLeft, ArrowRight, ShieldCheck, Rocket, MousePointerClick, Gauge, Code2, Users, CheckCircle2, MessageCircle, Phone, BarChart3, Globe, Target, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface SnapchatWebDevProps {
@@ -26,6 +26,7 @@ export const SnapchatWebDev: React.FC<SnapchatWebDevProps> = ({ lang }) => {
   const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const fontClass = isRTL ? 'font-arabic' : 'font-sans';
   const WHATSAPP_LINK = "https://wa.me/201010742430";
+  const PHONE_LINK = "tel:+201010742430";
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
@@ -123,16 +124,47 @@ export const SnapchatWebDev: React.FC<SnapchatWebDevProps> = ({ lang }) => {
         <meta name="robots" content="noindex, nofollow" />
       </Helmet>
 
-      {/* Floating CTA */}
-      <a 
-        href={WHATSAPP_LINK} 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className={`fixed bottom-6 ${isRTL ? 'left-6' : 'right-6'} z-50 flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1DA851] text-white py-3.5 px-5 md:px-6 rounded-full font-bold text-sm md:text-base shadow-xl shadow-green-500/20 transition-transform transform hover:scale-105`}
+      {/* Floating Call & WhatsApp Actions */}
+      <div 
+        className={`fixed bottom-24 md:bottom-7 ${isRTL ? 'left-4 sm:left-6' : 'right-4 sm:right-6'} z-50 flex flex-col gap-3`}
+        aria-label={lang === 'ar' ? 'أزرار التواصل السريع' : 'Quick Contact Actions'}
       >
-        <MessageCircle className="w-6 h-6" />
-        <span>{lang === 'ar' ? 'تواصل معنا' : 'WhatsApp'}</span>
-      </a>
+        {/* Floating Direct Call Button */}
+        <a 
+          href={PHONE_LINK}
+          aria-label={lang === 'ar' ? 'اتصال مباشر 01010742430' : 'Call Direct 01010742430'}
+          className="group flex items-center gap-3 bg-[#121829]/95 hover:bg-[#1677d2] text-[#f4f1e9] hover:text-white backdrop-blur-xl border border-[#9e7444]/40 hover:border-[#1677d2] py-2.5 px-4 sm:py-3 sm:px-5 rounded-full font-bold text-xs sm:text-sm shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-95"
+        >
+          <span className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#9e7444]/20 group-hover:bg-white/20 text-[#9e7444] group-hover:text-white transition-colors shrink-0">
+            <Phone className="w-4 h-4 sm:w-4.5 sm:h-4.5" />
+          </span>
+          <div className="flex flex-col leading-tight text-right">
+            <span className="font-extrabold tracking-wide">{lang === 'ar' ? 'اتصال مباشر' : 'Call Us Now'}</span>
+            <span className="text-[10px] font-mono text-[#f4f1e9]/65 group-hover:text-white/90 tracking-wider" dir="ltr">01010742430</span>
+          </div>
+        </a>
+
+        {/* Floating WhatsApp Button */}
+        <a 
+          href={WHATSAPP_LINK} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label={lang === 'ar' ? 'تواصل عبر واتساب' : 'Chat on WhatsApp'}
+          className="group flex items-center gap-3 bg-[#25D366] hover:bg-[#1DA851] text-white py-2.5 px-4 sm:py-3 sm:px-5 rounded-full font-bold text-xs sm:text-sm shadow-[0_12px_30px_rgba(37,211,102,0.35)] border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5 hover:scale-[1.03] active:scale-95"
+        >
+          <span className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/20 text-white shrink-0">
+            <MessageCircle className="w-4.5 h-4.5 sm:w-5 sm:h-5" />
+            <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
+            </span>
+          </span>
+          <div className="flex flex-col leading-tight text-right">
+            <span className="font-extrabold tracking-wide">{lang === 'ar' ? 'واتساب مباشر' : 'WhatsApp'}</span>
+            <span className="text-[10px] text-white/90 font-medium">{lang === 'ar' ? 'رد فوري واستشارة' : 'Instant Reply'}</span>
+          </div>
+        </a>
+      </div>
 
       {/* Header */}
       <header className="absolute top-0 left-0 right-0 p-6 md:px-12 flex justify-between items-center z-10 border-b border-white/5 bg-[#0b1020]/80 backdrop-blur-md">
