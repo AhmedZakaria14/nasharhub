@@ -439,7 +439,7 @@ export const blogPosts: BlogPost[] = [
     },
     "date": "2026-07-30",
     "author": "فريق نشار هب",
-    "image": "https://images.unsplash.com/photo-1571721795195-a2ca2d3370a9?auto=format&fit=crop&q=80&w=1200",
+    "image": "/assets/aistudio/WhatsApp_Image_2026-11-16_at_12.03.23_AM_194bf210.jpeg",
     "tags": [
       "شركة سيو",
       "SEO Services",

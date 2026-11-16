@@ -70,12 +70,14 @@ export const BlogPost: React.FC<BlogPostProps> = ({ lang, onBack }) => {
       ? rawPostTitle
       : `${rawPostTitle} | ${lang === 'ar' ? 'نشار هب' : 'Nashar Hub'}`;
 
+    const seoImageUrl = post.image.startsWith('http') ? post.image : `https://nasharhub.com${post.image}`;
+
     updateSEO({
       title: cleanPostTitle,
       description: post.excerpt[lang],
       keywords: post.tags.join(', '),
       url: `https://nasharhub.com/blog/${post.slug}`,
-      image: post.image
+      image: seoImageUrl
     });
 
     // Add JSON-LD Structured Data for SEO
@@ -87,7 +89,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({ lang, onBack }) => {
       "@type": "BlogPosting",
       "headline": cleanPostTitle,
       "name": cleanPostTitle,
-      "image": [post.image],
+      "image": [seoImageUrl],
       "datePublished": post.date,
       "dateModified": post.date,
       "telephone": "+201010742430",
@@ -205,11 +207,11 @@ export const BlogPost: React.FC<BlogPostProps> = ({ lang, onBack }) => {
             </div>
 
             {/* Clean Featured Cover Image */}
-            <div className="relative w-full aspect-[16/9] max-h-[460px] rounded-lg overflow-hidden border border-[#d1ccc0] bg-[#0b1020] mt-6">
+            <div className={`relative w-full ${post.image.startsWith('/assets/') ? 'bg-white' : 'aspect-[16/9] max-h-[460px] bg-[#0b1020]'} rounded-lg overflow-hidden border border-[#d1ccc0] mt-6`}>
               <img 
                 src={post.image} 
                 alt={`${post.title[lang]} - ${post.tags.join(', ')}`} 
-                className="w-full h-full object-cover object-center"
+                className={post.image.startsWith('/assets/') ? 'w-full h-auto object-contain block' : 'w-full h-full object-cover object-center'}
               />
             </div>
           </header>

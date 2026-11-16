@@ -70,11 +70,11 @@ export const Blog: React.FC<BlogProps> = ({ lang, onBack }) => {
             {blogPosts.map((post, index) => (
               <Reveal key={post.id} delay={index * 100}>
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm border border-[#d1ccc0] flex flex-col h-full group hover:border-[#1677d2] transition-colors">
-                  <Link to={`/blog/${post.slug}`} className="block relative h-64 overflow-hidden shrink-0 bg-[#0b1020]">
+                  <Link to={`/blog/${post.slug}`} className={`block relative h-64 overflow-hidden shrink-0 ${post.image.startsWith('/assets/') ? 'bg-white' : 'bg-[#0b1020]'}`}>
                     <img 
                       src={post.image} 
                       alt={`${post.title[lang]} - ${post.tags.join(', ')}`} 
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full ${post.image.startsWith('/assets/') ? 'object-contain p-1' : 'object-cover'} transform group-hover:scale-105 transition-transform duration-500`}
                     />
                 </Link>
                 <div className="p-7 md:p-8 flex flex-col flex-grow">

@@ -107,19 +107,20 @@ blogPosts.forEach(post => {
   const title = rawTitle.includes('نشار هب') ? rawTitle : `${rawTitle} | نشار هب`;
   const description = post.excerpt?.ar || '';
   const keywords = post.tags ? post.tags.join(', ') : 'نشار هب, تسويق الكتروني, سيو, برمجة مواقع, اعلانات جوجل';
+  const absoluteImage = post.image?.startsWith('http') ? post.image : `https://nasharhub.com${post.image}`;
   routes.push({
     path: `/blog/${post.slug}`,
     title,
     description,
     keywords,
-    image: post.image,
+    image: absoluteImage,
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": title,
       "name": title,
       "description": description,
-      "image": post.image,
+      "image": absoluteImage,
       "datePublished": post.date,
       "dateModified": post.date,
       "telephone": "+201010742430",
