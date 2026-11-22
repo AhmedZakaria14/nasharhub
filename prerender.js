@@ -120,6 +120,8 @@ blogPosts.forEach(post => {
       "headline": title,
       "name": title,
       "description": description,
+      "keywords": keywords,
+      "inLanguage": "ar-SA",
       "image": absoluteImage,
       "datePublished": post.date,
       "dateModified": post.date,

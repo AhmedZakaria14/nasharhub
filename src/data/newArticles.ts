@@ -5,6 +5,7 @@ import { batch3Articles } from './articlesBatch3';
 import { batch4Articles } from './articlesBatch4';
 import { batch5Articles } from './articlesBatch5';
 import { batch6Articles } from './articlesBatch6';
+import { batch7Articles } from './articlesBatch7';
 
 export const newArticles: BlogPost[] = [
   ...batch1Articles,
@@ -12,5 +13,6 @@ export const newArticles: BlogPost[] = [
   ...batch3Articles,
   ...batch4Articles,
   ...batch5Articles,
-  ...batch6Articles
+  ...batch6Articles,
+  ...batch7Articles
 ];

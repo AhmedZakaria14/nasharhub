@@ -119,6 +119,8 @@ export const BlogPost: React.FC<BlogPostProps> = ({ lang, onBack }) => {
         }
       },
       "description": post.excerpt[lang],
+      "keywords": post.tags.join(', '),
+      "inLanguage": lang === 'ar' ? 'ar-SA' : 'en',
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": `https://nasharhub.com/blog/${post.slug}`
