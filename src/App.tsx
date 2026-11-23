@@ -145,8 +145,8 @@ function App() {
       seoConfig.title = lang === 'en' ? 'Work Policy & Transparency | Nashar Hub' : 'سياسة العمل والشفافية | نشار هب';
       seoConfig.description = lang === 'en' ? 'Learn about work ethics, delivery standards, and transparency at Nashar Hub.' : 'تعرف على سياسة العمل ومعايير الجودة والشفافية المعتمدة في وكالة نشار هب للتسويق الرقمي.';
     } else if (path === '/payment' || path === '/payments' || path === '/official-documents') {
-      seoConfig.title = lang === 'en' ? 'Official Payment Details & Legal Documents | Nashar Hub' : 'بيانات الدفع ومستندات الشركة الرسمية | نشار هب';
-      seoConfig.description = lang === 'en' ? 'Official payment methods (Banque Misr, InstaPay, Mobile Wallet) and verified company tax & legal registration documents for Nashar Hub.' : 'طرق الدفع المعتمدة لشركة نشار هب (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) ومستندات الشركة الرسمية (البطاقة الضريبية وشهادة الموقف الضريبي).';
+      seoConfig.title = lang === 'en' ? 'Official Payment Details & Tax Registration | Nashar Hub' : 'بيانات الدفع والبيانات الضريبية | نشار هب';
+      seoConfig.description = lang === 'en' ? 'Official payment methods (Banque Misr, InstaPay, Mobile Wallet) and official tax registration number for Nashar Hub.' : 'طرق الدفع المعتمدة لشركة نشار هب (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) ورقم التسجيل الضريبي الرسمي.';
     }
 
     updateSEO(seoConfig);

@@ -194,8 +194,8 @@ export const WorkPolicy: React.FC<WorkPolicyProps> = ({ lang, onBack }) => {
               </h2>
               <p className="text-sm text-white/75 leading-relaxed max-w-2xl">
                 {lang === 'en'
-                  ? 'View our verified payment channels (Banque Misr, InstaPay, Mobile Wallet) and inspect our official Egyptian Tax Card and Tax Status Certificate.'
-                  : 'اطلع على قنوات الدفع المعتمدة (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) وعاين البطاقة الضريبية وشهادة الموقف الضريبي الرسمية للوكالة.'}
+                  ? 'View our verified payment channels (Banque Misr, InstaPay, Mobile Wallet) and our official Tax Registration Number.'
+                  : 'اطلع على قنوات الدفع المعتمدة (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) ورقم التسجيل الضريبي الرسمي للوكالة.'}
               </p>
             </div>
           </div>

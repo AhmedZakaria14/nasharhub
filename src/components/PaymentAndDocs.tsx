@@ -9,15 +9,10 @@ import {
   Building2,
   Smartphone,
   FileCheck2,
-  Download,
-  ZoomIn,
-  X,
   MessageCircle,
   Phone,
   CheckCircle2,
-  BadgeCheck,
-  FileText,
-  ExternalLink
+  BadgeCheck
 } from 'lucide-react';
 import { Language } from '../types';
 import { updateSEO } from '../utils/seo';
@@ -46,25 +41,18 @@ export const PaymentAndDocs: React.FC<PaymentAndDocsProps> = ({ lang, onBack }) 
   const isRTL = lang === 'ar';
   const [activeMethod, setActiveMethod] = useState<number>(0);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [lightboxDoc, setLightboxDoc] = useState<{
-    title: string;
-    subtitle: string;
-    imgSrc: string;
-    downloadHref: string;
-    downloadName: string;
-  } | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     updateSEO({
       title:
         lang === 'ar'
-          ? 'بيانات الدفع والمستندات الرسمية | وكالة نشار هب'
-          : 'Official Payment Details & Legal Documents | Nashar Hub',
+          ? 'بيانات الدفع والبيانات الضريبية | وكالة نشار هب'
+          : 'Official Payment Details & Tax Registration | Nashar Hub',
       description:
         lang === 'ar'
-          ? 'طرق الدفع المعتمدة لشركة نشار هب (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) ومستندات الشركة الرسمية (البطاقة الضريبية وشهادة الموقف الضريبي).'
-          : 'Official payment methods for Nashar Hub (Banque Misr, InstaPay, Mobile Wallet) and verified company tax & legal registration documents.',
+          ? 'طرق الدفع المعتمدة لشركة نشار هب (حساب بنك مصر، إنستاباي، المحفظة الإلكترونية) ورقم التسجيل الضريبي الرسمي.'
+          : 'Official payment methods for Nashar Hub (Banque Misr, InstaPay, Mobile Wallet) and official tax registration number.',
       url: 'https://nasharhub.com/payment'
     });
   }, [lang]);
@@ -146,82 +134,7 @@ export const PaymentAndDocs: React.FC<PaymentAndDocsProps> = ({ lang, onBack }) 
     }, 1800);
   };
 
-  const officialDocs = [
-    {
-      id: 'tax-card',
-      title: {
-        ar: 'البطاقة الضريبية الرسمية',
-        en: 'Official Egyptian Tax Card'
-      },
-      authority: {
-        ar: 'جمهورية مصر العربية - وزارة المالية - مصلحة الضرائب المصرية',
-        en: ' Arab Republic of Egypt - Ministry of Finance - Egyptian Tax Authority'
-      },
-      badge: {
-        ar: 'سارية حتى 2031/09/21',
-        en: 'Valid until 21/09/2031'
-      },
-      imageSrc: '/assets/aistudio/tax_card_official.jpg',
-      downloadHref: '/assets/aistudio/IMG-20261111-WA0064_5caf64aa.jpg',
-      downloadName: 'Nashar-Hub-Tax-Card.jpg',
-      isPdf: false,
-      highlights: [
-        {
-          label: { ar: 'اسم الممول المعتمد', en: 'Registered Taxpayer' },
-          value: 'ابراهيم محمد ابراهيم مصطفي علي'
-        },
-        {
-          label: { ar: 'رقم التسجيل الضريبي', en: 'Tax Registration No.' },
-          value: '783-550-308'
-        },
-        {
-          label: { ar: 'كود ونوع النشاط', en: 'Activity Code & Type' },
-          value: lang === 'ar' ? '4791 - البيع والتجارة عبر الإنترنت' : '4791 - Online Commerce & Digital Services'
-        },
-        {
-          label: { ar: 'رقم البطاقة المطبوع', en: 'Card Serial Number' },
-          value: '2135446267486603'
-        }
-      ]
-    },
-    {
-      id: 'tax-certificate',
-      title: {
-        ar: 'شهادة الموقف الضريبي الرسمية',
-        en: 'Official Tax Clearance & Status Certificate'
-      },
-      authority: {
-        ar: 'منطقة ضرائب الدقهلية أول - مأمورية الضرائب العامة بالمنزلة',
-        en: 'Egyptian Tax Authority - General Tax Directorate'
-      },
-      badge: {
-        ar: 'مختومة بشعار الجمهورية',
-        en: 'Official State Seal Verified'
-      },
-      imageSrc: '/assets/aistudio/tax_status_certificate.jpg',
-      downloadHref: '/assets/aistudio/DOC-20260917-WA0000_8909156f.pdf',
-      downloadName: 'Nashar-Hub-Tax-Certificate.pdf',
-      isPdf: true,
-      highlights: [
-        {
-          label: { ar: 'اسم الممول', en: 'Taxpayer Name' },
-          value: 'ابراهيم محمد ابراهيم مصطفي علي'
-        },
-        {
-          label: { ar: 'رقم الملف الضريبي', en: 'Tax File No.' },
-          value: '5/28806/117/1/1'
-        },
-        {
-          label: { ar: 'النشاط المسجل رسمياً', en: 'Registered Business Activity' },
-          value: lang === 'ar' ? 'تجارة إلكترونية والتسويق الرقمي' : 'E-Commerce & Digital Marketing'
-        },
-        {
-          label: { ar: 'الموقف الضريبي', en: 'Tax Liability Status' },
-          value: lang === 'ar' ? 'لا يوجد عليها أي مستحقات ضريبية' : 'Clear - Zero Outstanding Tax Dues'
-        }
-      ]
-    }
-  ];
+  const taxRegistrationNumber = '783-550-308';
 
   const receiptWhatsappMsg = encodeURIComponent(
     lang === 'ar'
@@ -263,8 +176,8 @@ export const PaymentAndDocs: React.FC<PaymentAndDocsProps> = ({ lang, onBack }) 
               </h1>
               <p className="text-base md:text-lg text-white/75 max-w-3xl font-normal leading-relaxed">
                 {lang === 'en'
-                  ? 'Complete your payment securely in three simple steps through our official verified channels, and review Nashar Hub’s official tax and legal registration documents.'
-                  : 'أتمم معاملاتك المالية بكل أمان وموثوقية عبر قنوات الدفع الرسمية المعتمدة لوكالة نشار هب، مع إمكانية الاطلاع المباشر على البطاقة الضريبية وشهادة الموقف الضريبي الرسمية.'}
+                  ? 'Complete your payment securely in three simple steps through our official verified channels, along with Nashar Hub’s official tax registration number.'
+                  : 'أتمم معاملاتك المالية بكل أمان وموثوقية عبر قنوات الدفع الرسمية المعتمدة لوكالة نشار هب، مع إمكانية التحقق من رقم التسجيل الضريبي الرسمي للشركة.'}
               </p>
             </div>
 
@@ -302,7 +215,7 @@ export const PaymentAndDocs: React.FC<PaymentAndDocsProps> = ({ lang, onBack }) 
                 className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/15 px-5 py-3 rounded-xl font-bold text-sm transition-all cursor-pointer"
               >
                 <FileCheck2 size={17} className="text-[#38bdf8]" />
-                <span>{lang === 'ar' ? 'مستندات الشركة الرسمية' : 'Official Documents'}</span>
+                <span>{lang === 'ar' ? 'رقم التسجيل الضريبي' : 'Tax Registration No.'}</span>
               </a>
             </div>
           </div>
@@ -579,200 +492,56 @@ export const PaymentAndDocs: React.FC<PaymentAndDocsProps> = ({ lang, onBack }) 
           </div>
         </section>
 
-        {/* SECTION 2: OFFICIAL COMPANY DOCUMENTS (البطاقة الضريبية + شهادة الموقف الضريبي) */}
-        <section id="official-docs-section" className="scroll-mt-28 space-y-8">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#d1ccc0] pb-6">
-            <div>
-              <div className="inline-flex items-center gap-2 text-[#007d87] font-mono text-xs uppercase tracking-widest font-bold mb-2">
-                <FileCheck2 size={16} />
-                <span>
-                  {lang === 'en' ? 'OFFICIAL LEGAL & TAX CREDENTIALS' : 'الأوراق الثبوتية والتراخيص الضريبية'}
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0b1020]">
-                {lang === 'en' ? 'Official Company Documents' : 'مستندات الشركة الرسمية'}
-              </h2>
-              <p className="text-sm sm:text-base text-[#667078] mt-1 max-w-2xl">
-                {lang === 'en'
-                  ? 'Nashar Hub operates with full legal and tax compliance. Below are our official Tax Card and Tax Status Certificate issued by the Egyptian Tax Authority.'
-                  : 'تعمل وكالة نشار هب بكيان قانوني وضريبي رسمي ومعتمد. يمكنك معاينة وتحميل البطاقة الضريبية وشهادة الموقف الضريبي الصادرة عن مصلحة الضرائب المصرية.'}
-              </p>
-            </div>
-
-            {/* Verified Registration Summary Pill */}
-            <div className="bg-white border border-[#d1ccc0] rounded-2xl px-5 py-3.5 flex items-center gap-3 shadow-xs shrink-0">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0">
-                <CheckCircle2 className="w-6 h-6" />
+        {/* SECTION 2: OFFICIAL TAX REGISTRATION NUMBER ONLY */}
+        <section id="official-docs-section" className="scroll-mt-28">
+          <div className="bg-white rounded-3xl border border-[#d1ccc0] p-6 sm:p-10 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-700 flex items-center justify-center shrink-0">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
               <div>
-                <div className="text-xs text-[#667078] font-medium">
-                  {lang === 'ar' ? 'رقم التسجيل الضريبي الموحد' : 'Unified Tax Registration No.'}
+                <div className="inline-flex items-center gap-1.5 text-[#007d87] font-mono text-xs uppercase tracking-widest font-bold mb-1">
+                  <FileCheck2 size={14} />
+                  <span>{lang === 'en' ? 'OFFICIAL TAX REGISTRATION' : 'البيانات الضريبية الرسمية'}</span>
                 </div>
-                <div className="text-base font-extrabold font-mono text-[#0b1020] tracking-wider" dir="ltr">
-                  783 - 550 - 308
-                </div>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-[#0b1020]">
+                  {lang === 'ar' ? 'رقم التسجيل الضريبي' : 'Tax Registration Number'}
+                </h2>
               </div>
             </div>
-          </div>
 
-          {/* 2-Column Documents Showcase */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {officialDocs.map((doc) => (
+            <div className="w-full md:w-auto flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-[#f8f6f0] border border-[#d1ccc0] rounded-2xl p-3 sm:px-5 sm:py-3.5">
               <div
-                key={doc.id}
-                className="bg-white rounded-3xl border border-[#d1ccc0] overflow-hidden shadow-md flex flex-col justify-between hover:border-[#0369a1]/50 transition-all"
+                className="text-xl sm:text-2xl font-extrabold font-mono text-[#0b1020] tracking-widest select-all text-center sm:text-start px-2"
+                dir="ltr"
               >
-                <div>
-                  {/* Card Top Bar */}
-                  <div className="p-6 sm:p-7 bg-[#0b1020] text-white flex flex-wrap items-center justify-between gap-3">
-                    <div>
-                      <span className="inline-flex items-center gap-1.5 text-[11px] font-mono font-bold text-[#38bdf8] bg-[#38bdf8]/10 border border-[#38bdf8]/30 px-2.5 py-0.5 rounded-full mb-2">
-                        <BadgeCheck className="w-3.5 h-3.5" />
-                        {doc.badge[lang]}
-                      </span>
-                      <h3 className="text-xl sm:text-2xl font-extrabold text-white">{doc.title[lang]}</h3>
-                      <p className="text-xs text-white/70 mt-1">{doc.authority[lang]}</p>
-                    </div>
-                  </div>
-
-                  {/* Document Preview Image Box */}
-                  <div className="p-5 sm:p-6 bg-[#f8f6f0] border-b border-[#d1ccc0]">
-                    <div
-                      onClick={() =>
-                        setLightboxDoc({
-                          title: doc.title[lang],
-                          subtitle: doc.authority[lang],
-                          imgSrc: doc.imageSrc,
-                          downloadHref: doc.downloadHref,
-                          downloadName: doc.downloadName
-                        })
-                      }
-                      className="group relative rounded-2xl overflow-hidden border border-[#d1ccc0] bg-white shadow-sm cursor-pointer aspect-[16/11] flex items-center justify-center"
-                    >
-                      <img
-                        src={doc.imageSrc}
-                        alt={doc.title[lang]}
-                        className="w-full h-full object-contain p-2 group-hover:scale-[1.02] transition-transform duration-300"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-[#0b1020]/0 group-hover:bg-[#0b1020]/35 transition-colors flex items-center justify-center">
-                        <span className="opacity-0 group-hover:opacity-100 transition-opacity bg-[#0b1020]/90 text-white text-xs sm:text-sm font-bold px-4 py-2.5 rounded-full inline-flex items-center gap-2 shadow-lg border border-white/20">
-                          <ZoomIn className="w-4 h-4 text-[#38bdf8]" />
-                          <span>{lang === 'ar' ? 'اضغط لتكبير المستند بوضوح كامل' : 'Click to Zoom Document'}</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Key Extracted Metadata Grid */}
-                  <div className="p-6 sm:p-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    {doc.highlights.map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="p-3.5 rounded-xl bg-[#f8f6f0] border border-[#d1ccc0]/70"
-                      >
-                        <div className="text-[11px] font-bold text-[#667078] mb-1">
-                          {item.label[lang]}
-                        </div>
-                        <div className="text-xs sm:text-sm font-extrabold text-[#0b1020] break-words">
-                          {item.value}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Footer (Zoom + Download Original PDF/Image) */}
-                <div className="px-6 sm:px-7 pb-6 pt-2 flex flex-wrap items-center gap-3">
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setLightboxDoc({
-                        title: doc.title[lang],
-                        subtitle: doc.authority[lang],
-                        imgSrc: doc.imageSrc,
-                        downloadHref: doc.downloadHref,
-                        downloadName: doc.downloadName
-                      })
-                    }
-                    className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 bg-[#0b1020] hover:bg-[#16203a] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all cursor-pointer"
-                  >
-                    <ZoomIn className="w-4 h-4 text-[#38bdf8]" />
-                    <span>{lang === 'ar' ? 'معاينة وتكبير' : 'Preview & Zoom'}</span>
-                  </button>
-
-                  {doc.isPdf && (
-                    <a
-                      href={doc.downloadHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 min-w-[140px] inline-flex items-center justify-center gap-2 bg-[#0369a1] hover:bg-[#0284c7] text-white font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all"
-                    >
-                      <FileText className="w-4 h-4" />
-                      <span>{lang === 'ar' ? 'فتح ملف PDF الأصلي' : 'Open Original PDF'}</span>
-                      <ExternalLink className="w-3.5 h-3.5 opacity-80" />
-                    </a>
-                  )}
-
-                  <a
-                    href={doc.downloadHref}
-                    download={doc.downloadName}
-                    className="inline-flex items-center justify-center gap-2 bg-[#f4f1e9] hover:bg-[#e8e3d7] text-[#0b1020] border border-[#d1ccc0] font-bold text-xs sm:text-sm py-3 px-4 rounded-xl transition-all"
-                  >
-                    <Download className="w-4 h-4 text-[#007d87]" />
-                    <span>{lang === 'ar' ? 'تحميل' : 'Download'}</span>
-                  </a>
-                </div>
+                {taxRegistrationNumber}
               </div>
-            ))}
+              <button
+                type="button"
+                onClick={() => handleCopy(taxRegistrationNumber, 'tax-registration-no')}
+                className={`min-h-[44px] px-5 rounded-xl font-bold text-sm cursor-pointer transition-all inline-flex items-center justify-center gap-2 ${
+                  copiedKey === 'tax-registration-no'
+                    ? 'bg-emerald-600 text-white shadow-sm'
+                    : 'bg-[#0369a1] hover:bg-[#0284c7] text-white shadow-xs active:scale-95'
+                }`}
+              >
+                {copiedKey === 'tax-registration-no' ? (
+                  <>
+                    <Check className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'تم النسخ' : 'Copied'}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    <span>{lang === 'ar' ? 'نسخ' : 'Copy'}</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </section>
       </div>
-
-      {/* Lightbox Modal for Fullscreen Document Inspection */}
-      {lightboxDoc && (
-        <div
-          className="fixed inset-0 z-[200] bg-black/85 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-          onClick={() => setLightboxDoc(null)}
-        >
-          <div
-            className="bg-[#0b1020] border border-white/15 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-4 sm:px-6 border-b border-white/10 flex items-center justify-between gap-4 text-white">
-              <div>
-                <h3 className="text-base sm:text-lg font-extrabold">{lightboxDoc.title}</h3>
-                <p className="text-xs text-white/65">{lightboxDoc.subtitle}</p>
-              </div>
-              <div className="flex items-center gap-2">
-                <a
-                  href={lightboxDoc.downloadHref}
-                  download={lightboxDoc.downloadName}
-                  className="inline-flex items-center gap-1.5 bg-[#1677d2] hover:bg-[#1262b0] text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-all"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>{lang === 'ar' ? 'تحميل المستند' : 'Download'}</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setLightboxDoc(null)}
-                  className="p-2 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer"
-                  aria-label="Close"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-            <div className="p-4 sm:p-6 overflow-auto bg-[#f8f6f0] flex-1 flex items-center justify-center">
-              <img
-                src={lightboxDoc.imgSrc}
-                alt={lightboxDoc.title}
-                className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-md"
-              />
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
